@@ -1,0 +1,4 @@
+osmnx~=2.0.5
+pyrosm~=0.6.2
+geopandas~=1.1.1
+boto3~=1.39.9
