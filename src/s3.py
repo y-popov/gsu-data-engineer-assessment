@@ -1,4 +1,5 @@
 import boto3
+import os
 from pathlib import Path
 
 def upload_to_s3(bucket: str, key: str, path: Path):

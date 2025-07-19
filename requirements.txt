@@ -1,4 +1,6 @@
-osmnx~=2.0.5
-pyrosm~=0.6.2
+boto3~=1.35.99
 geopandas~=1.1.1
-boto3~=1.39.9
+osmnx~=2.0.5
+prefect~=3.4.9
+pyarrow~=21.0.0
+pyrosm~=0.6.2

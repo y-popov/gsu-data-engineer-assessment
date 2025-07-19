@@ -52,6 +52,9 @@ class HospitalsSource(Enum):
     GeoFabrik = "geofabrik"
 
 def download_hospitals(county_data: dict[str, str], source: HospitalsSource) -> Path:
+    """
+    Downloads hospitals data from specified source for the given county, saves it as GeoJson and returns path to it.
+    """
     county_name = county_data["county"]
 
     if source == HospitalsSource.OSM:

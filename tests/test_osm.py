@@ -3,10 +3,15 @@ from geopandas import GeoDataFrame
 
 from src.osm import *
 
+# example_data = {
+#     "county": "rutland",
+#     "name": "rutland-latest.osm.pbf",
+#     "url": "http://download.geofabrik.de/europe/united-kingdom/england/rutland-latest.osm.pbf"
+# }
 example_data = {
-    "county": "rutland",
-    "name": "rutland-latest.osm.pbf",
-    "url": "http://download.geofabrik.de/europe/united-kingdom/england/rutland-latest.osm.pbf"
+    "county": "cambridgeshire",
+    "name": "cambridgeshire-latest.osm.pbf",
+    "url": "http://download.geofabrik.de/europe/united-kingdom/england/cambridgeshire-latest.osm.pbf"
 }
 
 def test_get_uk_regions():

@@ -22,10 +22,9 @@ def test_download_from_s3(s3):
     client.put_object(Bucket=bucket, Key=filekey, Body=b"content")
 
     with tempfile.NamedTemporaryFile(delete=True) as f:
-        download_from_s3(bucket, filekey, Path(f.name))
-
-        with open(f.name, "r") as fobj:
-            data = fobj.read()
+        output = Path(f.name)
+        download_from_s3(bucket, filekey, output)
+        data = output.read_text()
 
     assert data == "content"
 
