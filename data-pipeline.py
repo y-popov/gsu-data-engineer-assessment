@@ -10,8 +10,8 @@ from src.osm import get_uk_regions, download_hospitals, HospitalsSource
 from src.s3 import upload_to_s3
 from src.transformations import process_raw_hospitals_data
 
-BRONZE_BUCKET = os.getenv("BRONZE_BUCKET_NAME", "ip13-bronze")
-SILVER_BUCKET = os.getenv("BRONZE_BUCKET_NAME", "ip13-silver")
+BRONZE_BUCKET = os.getenv("TF_VAR_bronze_bucket")
+SILVER_BUCKET = os.getenv("TF_VAR_silver_bucket")
 
 @task(tags=["api_rate_limit"])
 def extract_region_hospitals(region):
@@ -21,7 +21,7 @@ def extract_region_hospitals(region):
 @task
 def load_bronze(geojson_path: Path):
     s3_key = geojson_path.name
-    upload_to_s3(BRONZE_BUCKET, geojson_path.name, geojson_path)
+    upload_to_s3(BRONZE_BUCKET, s3_key, geojson_path)
     return s3_key
 
 @task
