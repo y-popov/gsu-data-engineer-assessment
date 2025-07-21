@@ -1,15 +1,19 @@
 import tempfile
 import pytest
+import geopandas as gpd
 
 from src.transformations import *
 
 @pytest.fixture(scope='module')
 def sample_geojson():
-    # return Path('data/hospitals.geojson')
-    return Path('data/cambs.geojson')
+    return Path('data/hospitals.geojson')
 
 def test_process_raw_hospitals_data(sample_geojson):
     with tempfile.NamedTemporaryFile(suffix=".geoparquet", delete=False) as f:
         output = Path(f.name)
         process_raw_hospitals_data(input=sample_geojson, output=output)
+
+    hospitals = gpd.read_parquet(output)
+    assert hospitals.shape[0] == 1
+
     output.unlink()

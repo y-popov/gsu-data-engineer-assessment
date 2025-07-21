@@ -3,7 +3,6 @@ import os
 from prefect import flow, task
 from prefect.task_runners import ThreadPoolTaskRunner
 from prefect.futures import wait
-from prefect import get_client
 from pathlib import Path
 
 from src.osm import get_uk_regions, download_hospitals, HospitalsSource
