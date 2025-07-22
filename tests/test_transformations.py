@@ -6,12 +6,16 @@ from src.transformations import *
 
 @pytest.fixture(scope='module')
 def sample_geojson():
-    return Path('data/hospitals.geojson')
+    path = Path('data/hospitals.geojson')
+    if path.exists():
+        return path
+    return "tests" / path
+
 
 def test_process_raw_hospitals_data(sample_geojson):
     with tempfile.NamedTemporaryFile(suffix=".geoparquet", delete=False) as f:
         output = Path(f.name)
-        process_raw_hospitals_data(input=sample_geojson, output=output)
+        process_raw_hospitals_data(input=[sample_geojson], output=output)
 
     hospitals = gpd.read_parquet(output)
     assert hospitals.shape[0] == 1

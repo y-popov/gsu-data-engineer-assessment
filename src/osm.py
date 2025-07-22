@@ -23,6 +23,8 @@ def get_uk_regions():
         for subregion in subregions:
             data =  pyrosm.data.sources.subregions.great_britain.__dict__[subregion]
             data['county'] = subregion
+            if subregion.endswith("_with_hull"):
+                data['county'] = subregion.replace("_with_hull", "")
             yield data
 
 
